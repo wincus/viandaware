@@ -1,0 +1,20 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN">
+<html lang="es">
+<head>
+    <title> Últimos movimientos de {{ user }} </title>
+	<link rel="stylesheet" type="text/css" href="/media/css/changelists.css" />
+</head>
+<body>
+	<table>
+		{% for cc in ccs %}
+		<tr bgcolor='{{ cc.color  }}'> 
+			<td> {{ cc.user }} </td>
+			<td> {{ cc.label }} </td>
+			<td> {{ cc.datetime }} </td>
+			<td> {{ cc.saldo  }} </td>
+
+		</tr>
+		{% endfor %}
+	</table>
+</body>
+</html>

@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+
+{% block main %}
+
+<h2> Pedidos  para {{ user }} </h2>
+<table border="1">
+	{% for p in pedidos %}
+		<tr class={% if  p.pedido_id|divisibleby:"2"   %} "row2" {% else %} "row1"{% endif %}>
+		<li> 
+			<td>  {{ forloop.counter }}  </td>	
+			<td>  {{ p.pedido.nombre }} </td>
+			<td>  {{ p.pedido.datetime|date:" l j F " }} </td>
+			<td> <input type="text" name="cant_{{ p.pedido_id }}" value="{{ p.cant }}" id="id_{{  p.pedido_id  }}" size="1" /> </td>
+		</li>
+		{% endfor %}  
+</table>
+
+{% endblock %}
+
+{% block center %}
+	<h2> Saldos al {% now "d-m-y" %}: </h2>
+	<table border="1">
+		{% for u in users %}
+		<tr bgcolor='{{  u.color }}'>  
+			<td> {{ u.nombre  }}</td>
+			<td> ${{ u.saldo  }}  </td>
+		</tr>
+		{% endfor %}
+		<tr> <td> <b>Total:</b></td> <td> ${{ total }} </td></tr>
+	</table>
+	<b> Hoy puse: </b>
+	<input type="text" name="pago_{{ user.id }}" value="0" id="id_{{  user.id  }}" size="4" /> 
+{% endblock %}
+
+{% block right %}
+
+<h2> Movimientos de {{ user }} </h2>
+ <table>
+                {% for cc in ccs %}
+                <tr bgcolor='{{ cc.color  }}'>
+                        <td> {{ cc.label }} </td>
+                        <td> {{ cc.datetime|date:" l j F " }} </td>
+                        <td> ${{ cc.saldo  }} </td>
+                </tr>
+                {% endfor %}
+        </table>
+{% endblock %}
+
+
+{% block center2 %}
+
+{% endblock %}

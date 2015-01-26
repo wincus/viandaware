@@ -1,0 +1,57 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN">
+<html lang="es">
+<head>
+    <title> {{ user.nombre }} </title>
+	<link rel="stylesheet" type="text/css" href="/static/admin/css/base.css" />
+</head>
+<body class="dashboard">
+	{% if changes %}
+		   <ul class="messagelist"><li>los cambios se realizaron con éxito</li></ul>
+	{% endif %}
+
+	<form action="." method="POST">
+		<input type="hidden" name="user" value="{{ user.nombre }}" />
+			<div class="module">
+			<table>
+				<tr>
+					<td width=50%>
+						{% block main %}
+							<h2> Bloque principal </h2>
+						{% endblock main %}
+					</td>
+					<td width=50%>
+						<table>
+							<tr>
+								<td align='center'>
+									{% block right %}
+										<h2> Bloque center </h2>
+									{% endblock right %}
+								</td>
+							</tr>
+							<tr>
+								<td align='center'> 
+									{% block center %}
+										<h2> Bloque right </h2>
+									{% endblock center %}
+								</td>
+
+								<td align='center'>
+									{% block center2 %}
+										<h2> Bloque right2 </h2>
+									{% endblock center2 %}
+								</td>
+							</tr>
+						</table>
+					</td>
+				</tr>
+				<tr>
+					<td align='center'>
+						<input type="submit" value="Submit">
+					</td>
+				</tr>
+
+			</table>
+			</div>
+	</form>
+		</body>
+</html>

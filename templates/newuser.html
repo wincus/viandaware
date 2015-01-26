@@ -1,0 +1,29 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN">
+<html lang="es">
+<head>
+    <title> {{ user.nombre }} </title>
+	<link rel="stylesheet" type="text/css" href="/media/css/changelists.css" />
+</head>
+<body>
+    <h2> Pedidos  para  {{ user.nombre }} </h2>
+	
+	    <form action="." method="POST">
+	
+		<input type="hidden" name="user" value="{{ user.nombre }}" />
+        
+		<table border="1">
+        		{% for p in pedidos %}
+				<tr><li> 
+					<td>  {{ forloop.counter }}  </td>	<td>{{ p.pedido.nombre }} </td><td> {{ p.pedido.datetime|date:" l j F " }} </td> <td> <input type="text" name="cant_{{ p.pedido_id }}" value="{{ p.cant }}" id="id_{{  p.pedido_id  }}" size="1" /> </td>
+				</li></th>
+				{% endfor %}  
+		</table>
+        <p><input type="submit" value="Submit"></p>
+    </form>
+	
+		{% if changes %}
+			<p> Los cambios se guardaron con éxito </p>
+		{% endif %}
+
+</body>
+</html>
